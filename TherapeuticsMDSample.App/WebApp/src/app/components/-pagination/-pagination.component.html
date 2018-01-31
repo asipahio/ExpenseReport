@@ -1,0 +1,14 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item ">
+            <a class="page-link">Page {{ currentPage }} of {{ totalPages }}</a>
+        </li>
+        <li class="page-item " [ngClass]="{'disabled':currentPage == pages[0]}" (click)="ChangePage(currentPage-1)">
+            <a class="page-link" [ngClass]="{'text-primary':currentPage != pages[0]}">Previous</a>
+        </li>
+        <li class="page-item" *ngFor="let page of pages"><a class="page-link text-primary" (click)="ChangePage(page)">{{ page }}</a></li>
+        <li class="page-item" [ngClass]="{'disabled':currentPage == pages[pages.length-1]}" (click)="ChangePage(currentPage+1)">
+            <a class="page-link" [ngClass]="{'text-primary':currentPage != pages[pages.length-1]}">Next</a>
+        </li>
+    </ul>
+</nav>

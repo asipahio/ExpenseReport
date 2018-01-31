@@ -1,0 +1,41 @@
+<h1>Expense Reports</h1>
+<table class="table table-condensed table-striped">
+    <thead>
+        <tr>
+            <th class="w-15"><a (click)="ChangeSort('NoOfItems')"># of Items <i class="fa" [ngClass]="sortOrder == 'Asc' ? 'fa-caret-up' : 'fa-caret-down'" *ngIf="sortBy == 'NoOfItems'"></i></a></th>
+            <th class="w-40"><a (click)="ChangeSort('Name')">Name <i class="fa" [ngClass]="sortOrder == 'Asc' ? 'fa-caret-up' : 'fa-caret-down'" *ngIf="sortBy == 'Name'"></i></a></th>
+            <th class="w-20"><a (click)="ChangeSort('Total')">Total <i class="fa" [ngClass]="sortOrder == 'Asc' ? 'fa-caret-up' : 'fa-caret-down'" *ngIf="sortBy == 'Total'"></i></a></th>
+            <th class="w-25">
+                <form #f="ngForm" (ngSubmit)="filterResults(keyword)" class="form-inline">
+                    <label class="sr-only">Search</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2 form-control-sm" [(ngModel)]="keyword" name="keyword" />
+                    <button type="submit" class="btn btn-sm btn-primary mb-2">Search</button>
+                </form>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of viewModel.ExpenseReports">
+            <td>{{ r.ExpenseItems?.length }} Items</td>
+            <td>
+                <a *ngIf="!r.isEdit" routerLink="/ExpenseReport/{{r.ReportId}}">{{ r.ReportName }}</a>
+                <input type="text" class="form-control" [(ngModel)]="r.ReportName" *ngIf="r.isEdit" name="ReportName{{i}}" />
+            </td>
+            <td>
+                {{ ExpenseTotal(r) | currency:'USD':'symbol' }}
+            </td>
+            <td>
+                <button type="button" (click)="ShowEdit(r)" *ngIf="!r.isEdit" class="btn btn-sm btn-default"><i class="fa fa-pencil"></i> Edit</button>
+                <button type="button" (click)="CancelEdit(r)" *ngIf="r.isEdit" class="btn btn-sm btn-warning"><i class="fa fa-ban"></i> Cancel</button>
+                <button type="button" (click)="SaveReport(r)" *ngIf="r.isEdit" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Save</button>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3"></td>
+            <td class="text-right"><a class="btn btn-success" (click)="AddExpenseReport()"><i class="fa fa-plus"></i></a></td>
+        </tr>
+    </tfoot>
+</table>
+<app--pagination [totalPages]="totalPages" [currentPage]="currentPage" (ChangePageClick)="ChangePage($event)"></app--pagination>

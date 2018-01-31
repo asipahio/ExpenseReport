@@ -1,0 +1,95 @@
+<div class="alert alert-danger" role="alert" *ngIf="receiptError">
+    {{ receiptError }}
+</div>
+<div class="row headerWrap">
+    <div class="col">
+        <h1><a routerLink="/Home"><i class="fa fa-angle-left"></i></a> {{ viewModel.ReportName }}</h1>
+    </div>
+    <div class="col text-right my-auto">
+        <label class="btn btn-default btn-file">
+            Upload Receipt <input type="file" ng2FileSelect [uploader]="uploader" multiple accept="image/*,application/pdf" />
+        </label>
+    </div>
+</div>
+<table class="table table-condensed table-striped">
+    <thead>
+        <tr>
+            <th (click)="Sort('Receipt')">Receipt <i class="fa" [ngClass]="isReverseSort ? 'fa-caret-down' : 'fa-caret-up'" *ngIf="sortBy == 'Receipt'"></i></th>
+            <th (click)="Sort('ExpenseDate')">Date <i class="fa" [ngClass]="isReverseSort ? 'fa-caret-down' : 'fa-caret-up'" *ngIf="sortBy == 'ExpenseDate'"></i></th>
+            <th (click)="Sort('ExpenseCategory')">Category <i class="fa" [ngClass]="isReverseSort  ? 'fa-caret-down' : 'fa-caret-up'" *ngIf="sortBy == 'ExpenseCategory'"></i></th>
+            <th (click)="Sort('ExpenseDescription')">Description <i class="fa" [ngClass]="isReverseSort ? 'fa-caret-down' : 'fa-caret-up'" *ngIf="sortBy == 'ExpenseDescription'"></i></th>
+            <th (click)="Sort('ExpenseAmount')">Amount <i class="fa" [ngClass]="isReverseSort ? 'fa-caret-down' : 'fa-caret-up'" *ngIf="sortBy == 'ExpenseAmount'"></i></th>
+            <th class="text-right">
+                <form #f="ngForm" class="form-inline">
+                    <label class="sr-only">Search</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2 form-control-sm" [(ngModel)]="keyword" name="keyword" placeholder="Search" />
+                </form>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of viewModel.ExpenseItems | filter:keyword | sortBy:sortBy:isReverseSort" [ngClass]="{ 'table-info': isSelectReceipt && selectedItem == item.ExpenseItemId }">
+            <td>
+                <a (click)="ShowReceiptModal(receiptPreview, item.Receipt)" *ngIf="item.Receipt && item.Receipt.IsImage"><img src="{{ ReceiptsRoot }}/{{ item.Receipt?.Path }}" /></a>
+                <a (click)="ShowReceiptModal(receiptPreview, item.Receipt)" *ngIf="item.Receipt && !item.Receipt.IsImage" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+                <button class="btn btn-sm btn-link" *ngIf="!item.Receipt && viewModel.Receipts" (click)="SelectItem(item)"><i class="fa fa-plus"></i></button>
+                <br/><button class="btn btn-sm btn-link" *ngIf="item.Receipt" (click)="RemoveReceipt(item)">Remove</button>
+            </td>
+            <td>{{ item.ExpenseDate | date:'MM/dd/yyy' }}</td>
+            <td>{{ item.ExpenseCategory?.ExpenseCategory }}</td>
+            <td>{{ item.ExpenseDescription }}</td>
+            <td>{{ item.ExpenseAmount | currency:'USD':'symbol' }}</td>
+            <td class="text-right">
+                <a class="btn btn-sm btn-link" routerLink="/ExpenseItem/{{ viewModel.ReportId }}/{{ item.ExpenseItemId }}"><i class="fa fa-pencil"></i></a>
+                <a class="btn btn-sm btn-link text-danger" (click)="DeleteItem(item)"><i class="fa fa-trash"></i></a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" class="{{ !viewModel.ExpenseItems || viewModel.ExpenseItems.length == 0 ? 'table-warning' : 'text-right'}}">
+                <span *ngIf="!viewModel.ExpenseItems || viewModel.ExpenseItems.length == 0">There are no expenses yet. </span><a routerLink="/ExpenseItem/{{ viewModel.ReportId }}/">Add new item</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="row" *ngIf="isSelectReceipt">
+    <div class="col">
+        <h4>Select Receipt</h4>
+    </div>
+</div>
+<div class="row receiptsWrap">
+    <div class="col" *ngFor="let r of viewModel.Receipts">
+        <div class="receiptWrap">
+            <a (click)="ProcessReceiptClick(receiptPreview, r)" *ngIf="r.IsImage">
+                <img src="{{ ReceiptsRoot }}/{{ r.Path }}" />
+            </a>
+            <a (click)="ProcessReceiptClick(receiptPreview, r)" *ngIf="!r.IsImage" target="_blank"><i class="fa fa-file-pdf-o"></i></a>
+            <button class="btn btn-sm btn-danger" (click)="DeleteReceipt(r)" *ngIf="!isSelectReceipt"><i class="fa fa-trash"></i></button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col text-right">
+        <button class="btn btn-sm btn-danger" (click)="isSelectReceipt = false" *ngIf="isSelectReceipt">Cancel</button>
+    </div>
+</div>
+
+<ng-template #receiptPreview let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Receipt</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <img src="{{ ReceiptsRoot }}/{{ previewPath }}" />
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<br />
+<br />
+<br />
+<br />
+<br />

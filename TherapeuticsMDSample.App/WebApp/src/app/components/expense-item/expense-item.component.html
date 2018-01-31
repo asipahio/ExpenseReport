@@ -1,0 +1,33 @@
+<div class="row justify-content-md-center">
+    <div class="col-6">
+        <h1>{{ Type }} Expense Item</h1>
+        <form #f="ngForm" (ngSubmit)="onSubmit(viewModel)">
+            <div class="form-group">
+                <label>Date</label>
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="ExpenseDate" [(ngModel)]="viewModel.ExpenseDate" ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                            <i class="fa fa-calendar"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select class="form-control" [(ngModel)]="viewModel.ExpenseCategoryId" name="ExpenseCategoryId">
+                    <option *ngFor="let o of viewModel.ExpenseCategories" [ngValue]="o.Id">{{ o.ExpenseCategory }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control" [(ngModel)]="viewModel.ExpenseDescription" name="ExpenseDescription"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Amount</label>
+                <input type="number" step="any" class="form-control" [(ngModel)]="viewModel.ExpenseAmount" name="ExpenseAmount" />
+            </div>
+            <button type="submit" class="btn btn-sm btn-success">Save</button>
+        </form>
+    </div>
+</div>

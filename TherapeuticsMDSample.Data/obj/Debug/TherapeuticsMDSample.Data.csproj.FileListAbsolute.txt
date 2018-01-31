@@ -1,0 +1,16 @@
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\bin\Debug\TherapeuticsMDSample.Data.dll.config
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\bin\Debug\TherapeuticsMDSample.Data.dll
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\bin\Debug\TherapeuticsMDSample.Data.pdb
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\bin\Debug\EntityFramework.dll
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\bin\Debug\EntityFramework.xml
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\obj\Debug\TherapeuticsMDSample.Data.csprojResolveAssemblyReference.cache
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\obj\Debug\TherapeuticsMDSample.Data.csproj.CoreCompileInputs.cache
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\obj\Debug\TherapeuticsMDSample.Data.dll
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\obj\Debug\TherapeuticsMDSample.Data.pdb
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\obj\Debug\TherapeuticsMDSample.Data.Migrations.Init.resources
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\obj\Debug\TherapeuticsMDSample.Data.csproj.GenerateResource.Cache
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\obj\Debug\TherapeuticsMDSample.Data.Migrations.RemovedDupeField.resources
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\obj\Debug\TherapeuticsMDSample.Data.Migrations.ReceiptOptional.resources
+C:\Users\ali.sipahi\Documents\Visual Studio 2017\Projects\Demo\TherapeuticsMDSample\TherapeuticsMDSample.Data\obj\Debug\TherapeuticsMDSample.Data.Migrations.ExpenseCategory.resources
